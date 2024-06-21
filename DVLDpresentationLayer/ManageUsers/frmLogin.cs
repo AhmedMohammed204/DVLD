@@ -9,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UsersBusinessLayer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DVLD
 {
+
     public partial class frmLogin : Form
     {
-        private string FilePath = @"./RememberMe.txt";
-
+        private string ApplicationName = "DVLD";
         public frmLogin()
         {
             InitializeComponent();
@@ -25,11 +26,14 @@ namespace DVLD
         }
         private void _LoadData()
         {
-            string[]UserData = File.ReadAllLines(FilePath);
-            if (UserData.Length > 0)
+            WinRegistries registries = new WinRegistries(ApplicationName, WinRegistries.enHKEY.HKEY_CURRENT_USER);
+            string Username = registries.Get("Username");
+            string Password = registries.Get("Password");
+            
+            if (Username != string.Empty && Password != string.Empty)
             {
-                txtUsername.Text = UserData[0];
-                txtPassword.Text = UserData[1];
+                txtUsername.Text = Username;
+                txtPassword.Text = Password;
                 cbRememberMe.Checked = true;
                 ctrlBtnLogin.Focus();
             }
@@ -69,13 +73,17 @@ namespace DVLD
         }
         void PerformRememberMe()
         {
+            WinRegistries registries = new WinRegistries(ApplicationName, WinRegistries.enHKEY.HKEY_CURRENT_USER);
             if (cbRememberMe.Checked)
             {
-                string[] Content = { txtUsername.Text ,  txtPassword.Text };
-                File.WriteAllText(FilePath, $"{txtUsername.Text}\n{txtPassword.Text}");
+                string Username = txtUsername.Text;
+                string Password = txtPassword.Text;
+                if (!registries.SetVelue("Username", Username) || !registries.SetVelue("Password", Password))
+                    MessageBox.Show("There was an Error", "Error");
             }else
             {
-                File.WriteAllText(FilePath, string.Empty);
+                if (!registries.SetVelue("Username", string.Empty) || !registries.SetVelue("Password", string.Empty))
+                    MessageBox.Show("There was an Error", "Error");
             }
         }
         private void frmMainDataBack(object sender, bool CloseAllApplication)

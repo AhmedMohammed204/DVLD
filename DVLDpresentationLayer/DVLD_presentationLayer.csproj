@@ -84,6 +84,7 @@
     <Compile Include="MainFiles\frmMain_Users.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Lib\WinRegistries.cs" />
     <Compile Include="Screens\frmAccountSettings.cs">
       <SubType>Form</SubType>
     </Compile>
