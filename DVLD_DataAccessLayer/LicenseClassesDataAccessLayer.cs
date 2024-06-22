@@ -1,4 +1,5 @@
-﻿using PeopleDataAccessLayer;
+﻿using MyClassLibrary;
+using PeopleDataAccessLayer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -41,7 +42,7 @@ namespace LicenseClassesDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -82,7 +83,7 @@ namespace LicenseClassesDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -129,7 +130,7 @@ namespace LicenseClassesDataAccessLayer
             catch (Exception ex)
             {
                 //Console.WriteLine(Error:  + ex.Message);
-
+                clsErrorHandling.HandleError(ex);
             }
 
             finally
@@ -171,7 +172,7 @@ namespace LicenseClassesDataAccessLayer
 
 
             try { connection.Open(); rowsAffected = command.ExecuteNonQuery(); }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return (rowsAffected > 0);
@@ -191,7 +192,7 @@ namespace LicenseClassesDataAccessLayer
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -215,7 +216,7 @@ namespace LicenseClassesDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -238,7 +239,7 @@ namespace LicenseClassesDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 

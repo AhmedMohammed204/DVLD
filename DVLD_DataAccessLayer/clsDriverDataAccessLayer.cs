@@ -1,3 +1,4 @@
+using MyClassLibrary;
 using PeopleDataAccessLayer;
 using System;
 using System.Data;
@@ -39,7 +40,7 @@ namespace DriversDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -77,7 +78,7 @@ namespace DriversDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -225,7 +226,7 @@ namespace DriversDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -248,7 +249,7 @@ namespace DriversDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 

@@ -1,3 +1,4 @@
+using MyClassLibrary;
 using PeopleDataAccessLayer;
 using System;
 using System.Data;
@@ -46,7 +47,7 @@ namespace LicensesDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -92,7 +93,7 @@ namespace LicensesDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -153,7 +154,7 @@ namespace LicensesDataAccessLayer
             catch (Exception ex)
             {
                 //Console.WriteLine(Error:  + ex.Message);
-
+                clsErrorHandling.HandleError(ex);
             }
 
             finally
@@ -212,7 +213,7 @@ namespace LicensesDataAccessLayer
 
 
             try { connection.Open(); rowsAffected = command.ExecuteNonQuery(); }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return (rowsAffected > 0);
@@ -232,7 +233,7 @@ namespace LicensesDataAccessLayer
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -256,7 +257,7 @@ namespace LicensesDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -279,7 +280,7 @@ namespace LicensesDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 

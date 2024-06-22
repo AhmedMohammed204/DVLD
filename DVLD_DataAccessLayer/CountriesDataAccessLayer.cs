@@ -1,4 +1,5 @@
-﻿using PeopleDataAccessLayer;
+﻿using MyClassLibrary;
+using PeopleDataAccessLayer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -37,7 +38,7 @@ namespace CountriesDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -74,7 +75,7 @@ namespace CountriesDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -116,7 +117,7 @@ namespace CountriesDataAccessLayer
             catch (Exception ex)
             {
                 //Console.WriteLine(Error:  + ex.Message);
-
+                clsErrorHandling.HandleError(ex);
             }
 
             finally
@@ -146,7 +147,7 @@ namespace CountriesDataAccessLayer
 
 
             try { connection.Open(); rowsAffected = command.ExecuteNonQuery(); }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return (rowsAffected > 0);
@@ -166,7 +167,7 @@ namespace CountriesDataAccessLayer
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -190,7 +191,7 @@ namespace CountriesDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -214,7 +215,7 @@ namespace CountriesDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -237,7 +238,7 @@ namespace CountriesDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 

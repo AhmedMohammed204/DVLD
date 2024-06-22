@@ -1,4 +1,5 @@
-﻿using PeopleDataAccessLayer;
+﻿using MyClassLibrary;
+using PeopleDataAccessLayer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,7 +41,7 @@ namespace UsersDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -80,7 +81,7 @@ namespace UsersDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -127,7 +128,7 @@ namespace UsersDataAccessLayer
             catch (Exception ex)
             {
                 //Console.WriteLine(Error:  + ex.Message);
-
+                clsErrorHandling.HandleError(ex);
             }
 
             finally
@@ -166,7 +167,7 @@ namespace UsersDataAccessLayer
 
 
             try { connection.Open(); rowsAffected = command.ExecuteNonQuery(); }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return (rowsAffected > 0);
@@ -186,7 +187,7 @@ namespace UsersDataAccessLayer
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -210,7 +211,7 @@ namespace UsersDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -234,7 +235,7 @@ namespace UsersDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -258,7 +259,7 @@ namespace UsersDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -281,7 +282,7 @@ namespace UsersDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -304,7 +305,7 @@ namespace UsersDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 

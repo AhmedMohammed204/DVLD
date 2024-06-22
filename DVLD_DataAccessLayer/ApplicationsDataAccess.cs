@@ -1,4 +1,5 @@
-﻿using PeopleDataAccessLayer;
+﻿using MyClassLibrary;
+using PeopleDataAccessLayer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -43,7 +44,7 @@ namespace ApplicationsDataAccessLayer
 
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return isFound;
@@ -93,7 +94,7 @@ namespace ApplicationsDataAccessLayer
             catch (Exception ex)
             {
                 //Console.WriteLine(Error:  + ex.Message);
-
+                clsErrorHandling.HandleError(ex);
             }
 
             finally
@@ -141,7 +142,7 @@ namespace ApplicationsDataAccessLayer
 
 
             try { connection.Open(); rowsAffected = command.ExecuteNonQuery(); }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
             return (rowsAffected > 0);
@@ -161,7 +162,7 @@ namespace ApplicationsDataAccessLayer
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -185,7 +186,7 @@ namespace ApplicationsDataAccessLayer
                 isFound = reader.HasRows;
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -213,7 +214,7 @@ namespace ApplicationsDataAccessLayer
                     ApplicationID = insertedID;
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 
@@ -236,7 +237,7 @@ namespace ApplicationsDataAccessLayer
                 if (reader.HasRows) dt.Load(reader);
                 reader.Close();
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { clsErrorHandling.HandleError(ex); }
             finally { connection.Close(); }
 
 

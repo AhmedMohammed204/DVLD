@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyClassLibrary;
+using System;
 using System.Windows.Forms;
 using UsersBusinessLayer;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DVLD
 {
@@ -29,7 +21,7 @@ namespace DVLD
             WinRegistries registries = new WinRegistries(ApplicationName, WinRegistries.enHKEY.HKEY_CURRENT_USER);
             string Username = registries.Get("Username");
             string Password = registries.Get("Password");
-            
+
             if (Username != string.Empty && Password != string.Empty)
             {
                 txtUsername.Text = Username;
@@ -52,11 +44,11 @@ namespace DVLD
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this. Close();
+            this.Close();
         }
         bool IsUserAccessToLogin()
         {
-            
+
             if (!(clsUser.isUserExist(txtUsername.Text)) || !(clsUser.Find(txtUsername.Text).Password == txtPassword.Text))
             {
                 MessageBox.Show("Username or Password is not true");
@@ -80,7 +72,8 @@ namespace DVLD
                 string Password = txtPassword.Text;
                 if (!registries.SetVelue("Username", Username) || !registries.SetVelue("Password", Password))
                     MessageBox.Show("There was an Error", "Error");
-            }else
+            }
+            else
             {
                 if (!registries.SetVelue("Username", string.Empty) || !registries.SetVelue("Password", string.Empty))
                     MessageBox.Show("There was an Error", "Error");
@@ -99,7 +92,7 @@ namespace DVLD
         }
         private void ctrlBtnLogin_OnButtonClick(Button obj)
         {
-            if(!IsUserAccessToLogin())
+            if (!IsUserAccessToLogin())
                 return;
 
 
@@ -110,7 +103,7 @@ namespace DVLD
             frm.DataBack += frmMainDataBack;
             frm.ShowDialog();
 
-            
+
         }
     }
 }

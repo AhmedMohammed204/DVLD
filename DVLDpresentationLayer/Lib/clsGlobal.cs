@@ -10,5 +10,7 @@ namespace DVLD
     static class clsGlobal
     {
         public static clsUser User;
+
+
     }
 }

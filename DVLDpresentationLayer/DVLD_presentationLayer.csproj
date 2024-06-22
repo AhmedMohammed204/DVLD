@@ -84,7 +84,6 @@
     <Compile Include="MainFiles\frmMain_Users.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lib\WinRegistries.cs" />
     <Compile Include="Screens\frmAccountSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -550,6 +549,10 @@
     <ProjectReference Include="..\DVLD_BusinessLayer\DVLD_BusinessLayer.csproj">
       <Project>{7997387c-f67e-4964-99e5-b68747922652}</Project>
       <Name>DVLD_BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyClassLibrary\MyClassLibrary.csproj">
+      <Project>{7fc4f034-5be3-4370-a06f-258af3638a9b}</Project>
+      <Name>MyClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
