@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -63,7 +64,7 @@ namespace DVLD
                 return false;
             }
 
-            if(_User.Password != txtCurrentPassword.Text)
+            if(_User.Password != clsHashing.Hash( txtCurrentPassword.Text))
             {
                 MessageBox.Show("User current password is not true");
                 return false;
@@ -82,7 +83,7 @@ namespace DVLD
             if (!_IsValidToSave())
                 return;
 
-            _User.Password = txtPassword.Text;
+            _User.Password = clsHashing.Hash( txtPassword.Text);
 
             if(!_User.Save())
             {

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsErrorHandling.cs" />
+    <Compile Include="clsHashing.cs" />
     <Compile Include="clsLogging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinRegistries.cs" />

@@ -1,5 +1,6 @@
 ﻿using MyClassLibrary;
 using System;
+using System.Data;
 using System.Windows.Forms;
 using UsersBusinessLayer;
 
@@ -49,7 +50,7 @@ namespace DVLD
         bool IsUserAccessToLogin()
         {
 
-            if (!(clsUser.isUserExist(txtUsername.Text)) || !(clsUser.Find(txtUsername.Text).Password == txtPassword.Text))
+            if (!(clsUser.isUserExist(txtUsername.Text)) || !(clsUser.Find(txtUsername.Text).Password == clsHashing.Hash( txtPassword.Text)))
             {
                 MessageBox.Show("Username or Password is not true");
                 return false;
